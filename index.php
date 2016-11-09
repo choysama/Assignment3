@@ -3,6 +3,7 @@
 /*#SECURITYHOLE
  * Issue: using GET
  * test commit
+ * open shared file successfully
  */
 if (!empty($_GET)) {
     $qstr = $_SERVER['QUERY_STRING'];
