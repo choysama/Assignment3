@@ -1,0 +1,8 @@
+not_number,Input must be a number.
+not_dollar,Input must be a dollar amount
+not_non-negative,Quantity must be zero or more.
+not_integer,Quantity must be whole number
+bad_password,Username and password do not match
+no_password,Please enter a password
+not_long_enough,does not meet minimum length requirement
+blank_field, Field cannot be blank
