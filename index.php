@@ -2,6 +2,7 @@
 //Show login page only if they selected a package
 /*#SECURITYHOLE
  * Issue: using GET
+ * test commit
  */
 if (!empty($_GET)) {
     $qstr = $_SERVER['QUERY_STRING'];
