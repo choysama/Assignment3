@@ -4,6 +4,7 @@
  * Issue: using GET
  * test commit
  * open shared file successfully
+ * hi paula
  */
 if (!empty($_GET)) {
     $qstr = $_SERVER['QUERY_STRING'];
