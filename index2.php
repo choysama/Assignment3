@@ -1,3 +1,11 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fish Market</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+    </head>
+    <body>
+
 <?php
 
 // Pull array data from the file destinationdata.php
@@ -60,16 +68,6 @@ if (array_key_exists('send', $_GET)) {
 }
 ?>
 
-
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Fish Market</title>
-    </head>
-    <body>
-    <style>
-        body {background-color: seashell}
-    </style>
         
     <center><h1>Welcome to I'a (Fish) Market</h1>
         <p><i>Our online commerce is now selling pet fishes near you! 

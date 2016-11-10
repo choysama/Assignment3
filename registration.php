@@ -1,3 +1,11 @@
+<html>
+    <head>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+<title>
+    Create a New Account
+</title>
+</head>
+
 <?php
     include 'functions.php';
     
@@ -101,9 +109,6 @@
     if ($is_logged_in == FALSE) {
         ?>
     <h1><center>Please fill out information below to register:</center></h1>
-        <style>
-        body {background-color: seashell}
-        </style>
         <center>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']) ?>" method="POST">
             <input type=hidden name='serial_post' value='<?php echo @$_POST['serial_post']; ?>'>

@@ -1,20 +1,14 @@
+
 <?php
-//Show login page only if they selected a package
+
 /*#SECURITYHOLE
  * Issue: using GET
- * test commit
- * open shared file successfully
- * hi paula
  */
-if (!empty($_GET)) {
-    $qstr = $_SERVER['QUERY_STRING'];
 ?>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 <center>
-    <style>
-        body {background-color: seashell}
-    </style>
     <h1> Log in! </h1>
 </center>
 </head>
@@ -82,9 +76,4 @@ $users = array();
             header('Location: registration.php?' . $qstr);
         }
     }
-}
-else {
-    print "Please return to I'a Market home page to place an order.";
-    print "<p><a href='./index.php'>Return to home page</a></p>";
-}
 ?>

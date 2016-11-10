@@ -1,3 +1,11 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>I'a (Fish) Market</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+    </head>
+    <body>
+        
 <?php
 
 Require("products.php");
@@ -12,12 +20,7 @@ if (!empty($quantities) && !empty($_GET['username'])) {
 
 ?>
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>I'a (Fish) Market</title>
-    </head>
-    <body>
+
     
     <!-- #SECURITYHOLE -->  
     <center><h1><?php print "Welcome " . $_GET['username'] . "!"; ?></h1>
