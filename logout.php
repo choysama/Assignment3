@@ -23,9 +23,10 @@ and open the template in the editor.
             $username = $_COOKIE["userid"];
             session_id($username); 
             session_start();
-            echo "started teh session <BR>"; // #DEBUG
-            var_dump($_SESSION); // #DEBUG
             
+            echo "started teh session for $username<BR>"; // #DEBUG
+            var_dump($_SESSION); // #DEBUG
+
             // If the user is not logged in, redirect them to the log in page
             if ( $_SESSION['logged_in'] == false) {
                // header ('Location: index.php');
@@ -35,6 +36,7 @@ and open the template in the editor.
             else {
                 echo "Before log out: "; // #DEBUG
                 var_dump($_SESSION); // #DEBUG
+
                 $_SESSION['logged_in'] = false;
                 
                 // Delete cookie
@@ -43,6 +45,9 @@ and open the template in the editor.
                 echo "<br><br>After log out: "; // #DEBUG
                 var_dump($_SESSION); // #DEBUG
                 session_destroy();
+                
+                echo "<br><br>After log out: "; // #DEBUG
+                var_dump($_SESSION); // #DEBUG
             }    
         }
         echo "<h1>Please come again!</h1>";

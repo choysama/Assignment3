@@ -36,17 +36,11 @@ and open the template in the editor.
                 echo " Cart(" . count( $_SESSION['cart'] ) . ")";
                 echo "<br>";
                 
-                var_dump($_SESSION);
+                var_dump($_SESSION); // $DEBUG
             }  
             else {
                 echo "what?"; // #DEBUG
             }
-        }
-            {
-            // get cookie
-            // start session
-            
-            // logout link redirects to logout page and deletes cookie
         }
         ?>
 
