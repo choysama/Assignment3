@@ -23,7 +23,7 @@ and open the template in the editor.
             $username = $_COOKIE["userid"];
             session_id($username); 
             session_start();
-            echo "started teh session <BR>"; // #DEBUG
+            echo "started teh session for $username<BR>"; // #DEBUG
             var_dump($_SESSION); // #DEBUG
             
             // If the user is not logged in, redirect them to the log in page
