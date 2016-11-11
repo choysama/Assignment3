@@ -29,13 +29,18 @@ and open the template in the editor.
                 header ('Location: index.php');
             }
             // Else, if the user is logged in, print out links for their navigation
-            else {
+            else if ( $_SESSION['logged_in'] == true ) {
                 echo "Welcome, " . $_SESSION['first_name'] . "! ";
                 echo " <a href='logout.php'>logout</a> ";
                 echo " Account ";
                 echo " Cart(" . count( $_SESSION['cart'] ) . ")";
                 echo "<br>";
-            }    
+                
+                var_dump($_SESSION);
+            }  
+            else {
+                echo "what?"; // #DEBUG
+            }
         }
             {
             // get cookie

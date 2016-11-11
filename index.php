@@ -77,12 +77,10 @@ $is_logged_in = FALSE;
         <INPUT TYPE="password" name = 'password' value ="<?php if (isset($_POST['password'])) echo $_POST['password']?>"><br><br>
         <INPUT TYPE="SUBMIT" name = 'login_submit' value="Login"> <br><br><br>   
         <INPUT TYPE="SUBMIT" name='create_new_user' value='Create Account'>
-        <p><a href="welcome.php">Go to products (this link will be gone once testing is done)</a></p>
     </form>
 </center>
 
     <?php
-    
         if (array_key_exists('create_new_user', $_POST)) {
             header('Location: registration.php?' . $qstr);
         }
