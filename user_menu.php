@@ -3,9 +3,6 @@
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
-
-branching test
-now I will test merging this branch
 -->
 
     <head>
@@ -39,11 +36,8 @@ now I will test merging this branch
                 echo " Cart(" . count( $_SESSION['cart'] ) . ")";
                 echo "<br>";
                 
-                var_dump($_SESSION); // $DEBUG
+
             }  
-            else {
-                echo "what?"; // #DEBUG
-            }
         }
             {
             // get cookie

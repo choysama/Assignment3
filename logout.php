@@ -23,25 +23,20 @@ and open the template in the editor.
             $username = $_COOKIE["userid"];
             session_id($username); 
             session_start();
-            echo "started teh session for $username<BR>"; // #DEBUG
-            var_dump($_SESSION); // #DEBUG
+
             
             // If the user is not logged in, redirect them to the log in page
             if ( $_SESSION['logged_in'] == false) {
                // header ('Location: index.php');
-                echo "they are not logged in<BR>"; // #DEBUG
             }
             // Else, if the user is logged in, log them out and destroy both the session and the cookie
             else {
-                echo "Before log out: "; // #DEBUG
-                var_dump($_SESSION); // #DEBUG
                 $_SESSION['logged_in'] = false;
                 
                 // Delete cookie
                 setcookie ("userid", "", time() - 3600);
                 $_SESSION = array();    
-                echo "<br><br>After log out: "; // #DEBUG
-                var_dump($_SESSION); // #DEBUG
+
                 session_destroy();
             }    
         }
