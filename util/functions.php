@@ -37,8 +37,9 @@ function create_new_user($user_login, $users_array) {
     fclose($fp);
 }
 
-// Get existing user information
-function get_users_info($username_entered, $user_login) {
+// Get existing user credentials
+// $user_login - the file with user log in info
+function get_users_creds($username_entered, $user_login) {
 // Read file & create users info arrays    
     if (file_exists($user_login)) {
         $fp = fopen($user_login, 'r');
@@ -58,6 +59,29 @@ function get_users_info($username_entered, $user_login) {
     }
     die("Filename $user_login does not exist! Exiting.");
 }
+// Get existing user information (without login information)
+// $user_login - the file with user log in info
+function get_users_info($username_entered, $user_login) {
+// Read file & create users info arrays    
+    if (file_exists($user_login)) {
+        $fp = fopen($user_login, 'r');
+        while (!feof($fp)) {
+            $users_line = fgets($fp);
+            if (!empty($users_line)) {
+                $users_key = explode(',', $users_line);
+                if ($users_key[0] == $username_entered) {
+                    $users_array = array('username' => $users_key[0], 'email' => $users_key[2], 'first_name' => $users_key[3],'last_name' => $users_key[4] );
+                    $all_users_array[$users_array['username']] = $users_array;
+                    return $all_users_array;
+                }
+            }
+        }
+        fclose($fp);
+        return array();
+    }
+    die("Filename $user_login does not exist! Exiting.");
+}
+
 //advanced forms powerpoint
 function make_textbox_sticky($name_of_textbox) {
     if (isset($_POST[$name_of_textbox])) {

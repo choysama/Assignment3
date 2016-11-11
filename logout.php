@@ -4,11 +4,12 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-
+<html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <title></title>
     </head>
+    <body>
         <?php
         
         // if user does not have a cookie, redirect to login page
@@ -20,7 +21,6 @@ and open the template in the editor.
         else {
             // Check if user is logged in
             $username = $_COOKIE["userid"];
-            session_save_path("./sess");
             session_id($username); 
             session_start();
             
@@ -28,20 +28,21 @@ and open the template in the editor.
             if ( $_SESSION['logged_in'] == false) {
                 header ('Location: index.php');
             }
-            // Else, if the user is logged in, print out links for their navigation
+            // Else, if the user is logged in, log them out and destroy both the session and the cookie
             else {
-                echo "Welcome, " . $_SESSION['first_name'] . "! ";
-                echo " <a href='logout.php'>logout</a> ";
-                echo " Account ";
-                echo " Cart(" . count( $_SESSION['cart'] ) . ")";
-                echo "<br>";
+                $_SESSION['logged_in'] = false;
+                
+                // Delete cookie
+                setcookie ("userid", "", time() - 3600);
+                $_SESSION = array();    
+                session_destroy();
+                
+                echo "<h1>Please come again!</h1>";
+                sleep(10);
             }    
         }
-            {
-            // get cookie
-            // start session
-            
-            // logout link redirects to logout page and deletes cookie
-        }
         ?>
-
+        
+        
+    </body>
+</html>

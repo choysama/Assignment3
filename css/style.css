@@ -11,5 +11,13 @@ and open the template in the editor.
 /***        Background Settings        ***/
 
 body {
-    background-color: seashell ;
+    background-color: seashell;
+}
+
+h1 {
+    text-align: center;
+}
+
+#error {
+    color: red;
 }
