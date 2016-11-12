@@ -12,65 +12,82 @@ include './util/functions.php';
 // Using user info from user_login.dat file
 $user_file = './data/user_login.dat';
 
+// Initialize variables
 $is_logged_in = FALSE;
+session_save_path("./sess");
 
-// File I/O
+// Check if the user has already logged in
 
+// Check if the cookie is set
+if ( isset($_COOKIE["userid"]) ) { 
+    // Check if the 
+    $username = $_COOKIE["userid"];
+    session_save_path("./sess");
+    session_id($username); 
+    session_start();
+    
+    // Redirect the user if they are logged in
+    if ( $_SESSION['logged_in'] === true) {
+        $is_logged_in = true;
+        header ('Location: ' . $_SESSION['last_page_visited']);
+    }
+} 
 
+else {
+    // Check to see if user is trying to login, see if they're already a registered user
+    if (array_key_exists('login_submit', $_POST)) {
+        echo "<div id='error'>"; //div to modify how error is displayed
 
-// Check to see if user is trying to login, see if they're already a registered user
-        if (array_key_exists('login_submit', $_POST)) {
-            echo "<div id='error'>"; //div to modify how error is displayed
-            
-            $username_entered = strtolower($_POST['username']);
-            $all_users_array = get_users_creds($username_entered, $user_file);
+        $username_entered = strtolower($_POST['username']);
+        $all_users_array = get_users_creds($username_entered, $user_file);
 // Make username case insensitive, convert $_POST['username'] to all uppercase  or all lowercase
-            if (array_key_exists($username_entered, $all_users_array)) {
-                // check to see if password matches the users info
-            $user_info = $all_users_array[$username_entered];
-            
-                // Send user to next page if credentials are valid
-                if ($user_info['password'] == $_POST['password']) {
-                    $is_logged_in = TRUE;
-                    
-              
-                    //since there are no errors, issue a cookie, set session variables, and send to welcome page
-                    // assumes the cookie has not been set
-                                       
-                    $user_info = get_users_info($username_entered, $user_file);          
-                    
-                    setcookie("userid", $username_entered, time()+3600 ); 
-                    session_save_path("./sess");
-                    session_id($username_entered); 
-                    session_start();
-                    $_SESSION['logged_in'] = true;
-                    $_SESSION['first_name'] = $user_info[$username_entered]['first_name'];
-                    $_SESSION['last_name'] = $user_info[$username_entered]['last_name'];
-                    $_SESSION['cart'] = array();
-                    
+        if (array_key_exists($username_entered, $all_users_array)) {
+            // check to see if password matches the users info
+        $user_info = $all_users_array[$username_entered];
 
-                    header ('Location: welcome.php');
-                }
-                
-                // User entered the wrong password
-                else {
-                    print "Username and password do not match. Please try again.";
-                    $is_logged_in = FALSE;
-                }
+            // Send user to next page if credentials are valid
+            if ($user_info['password'] == $_POST['password']) {
+                $is_logged_in = TRUE;
+
+
+                //since there are no errors, issue a cookie, set session variables, and send to welcome page
+                // assumes the cookie has not been set
+
+                $user_info = get_users_info($username_entered, $user_file);          
+
+                setcookie("userid", $username_entered, time()+3600 ); 
+                session_save_path("./sess");
+                session_id($username_entered); 
+                session_start();
+                $_SESSION['logged_in'] = true;
+                $_SESSION['first_name'] = $user_info[$username_entered]['first_name'];
+                $_SESSION['last_name'] = $user_info[$username_entered]['last_name'];
+                $_SESSION['cart'] = array();
+
+
+                header ('Location: welcome.php');
             }
-            // username doesn't exist
+
+            // User entered the wrong password
             else {
-                print "$username_entered doesn't exist. Please try again.<br>";
+                print "Username and password do not match. Please try again.";
+                $is_logged_in = FALSE;
             }
-            
-            echo "</div>"; //div to modify how error is displayed
-            
         }
-        if ($is_logged_in == FALSE) {
+        // username doesn't exist
+        else {
+            print "$username_entered doesn't exist. Please try again.<br>";
+        }
+
+        echo "</div>"; //div to modify how error is displayed
+
+    }
+    if ($is_logged_in == FALSE) {
 
         ?>
         <center>
-            <form action = '<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . "?" . $_SERVER['QUERY_STRING']; ?>' method= 'post'>
+            
+            <form action = '<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>' method= 'post'>
                 Username: <br>
                 <INPUT TYPE="TEXT"  name="username" value = "<?php if ( isset($_POST['username']) ) echo $_POST['username'] ?>"><br><br>
         Password: <br>
@@ -85,4 +102,6 @@ $is_logged_in = FALSE;
             header('Location: registration.php?' . $qstr);
         }
     }
+}
 ?>
+<a href='welcome.php'>If this link works, something with sessions/cookies is broken.</a> <!-- #DEBUG -->

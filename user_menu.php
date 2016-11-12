@@ -32,9 +32,12 @@ and open the template in the editor.
             else if ( $_SESSION['logged_in'] == true ) {
                 echo "Welcome, " . $_SESSION['first_name'] . "! ";
                 echo " <a href='logout.php'>logout</a> ";
-                echo " Account ";
+                echo " <a href='account.php'>Account</a> ";
                 echo " Cart(" . count( $_SESSION['cart'] ) . ")";
                 echo "<br>";
+                
+                // Set the last page visited
+                $_SESSION['last_page_visited'] = basename($_SERVER['PHP_SELF']);
                 
                 var_dump($_SESSION); // $DEBUG
             }  

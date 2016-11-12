@@ -7,14 +7,14 @@
 </head>
 
 <?php
-    include 'functions.php';
+    include './util/functions.php';
     
     /*#DESIGNHOLE
      * Issue: Sam doesn't like how errors are displayed 
      */
 
 
-    $user_file = 'user_login.dat';
+    $user_file = './data/user_login.dat';
     //start off as if user is not logged in (that's why they're at registration page & with no errors, because nothing was entered yet
     $is_logged_in = false;
     $errors = array();
@@ -107,6 +107,7 @@
 
 // display registration form if errors array is not empty
     if ($is_logged_in == FALSE) {
+       
         ?>
     <h1><center>Please fill out information below to register:</center></h1>
         <center>
